@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CrisisListComponent } from './crisis-list/crisis-list.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 const routes: Routes = [
-  {
-    path: '',
-    children: []
-  }
+  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: 'crisis-centre', component: CrisisListComponent },
+  { path: 'heroes', component: HeroesComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
