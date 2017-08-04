@@ -1,0 +1,10 @@
+<h3>Current Crises</h3>
+<ul class="items">
+  <li *ngFor="let crisis of crises | async">
+    <a [routerLink]="[crisis.id]"
+       [class.selected]="isSelected(crisis)">
+      <span class="badge">{{ crisis.id }}</span>
+      {{ crisis.name }}
+    </a>
+  </li>
+</ul>

@@ -8,5 +8,7 @@
 <nav>
   <a routerLink="/crisis-centre" routerLinkActive="active">Crisis Centre</a>
   <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
 </nav>
 <router-outlet></router-outlet>
+<router-outlet name="popup"></router-outlet>
