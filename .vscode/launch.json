@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chromium",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceRoot}",
+            // note, this script is only needed when vscode is installed
+            // as a snap, it runs chromium in clean env (i.e. removing
+            // snap specific LD_LIBRARY_PATH etc. which would make
+            // chromium fail)
+            "runtimeExecutable": "${workspaceRoot}/.vscode/chromium-rdbg.sh",
+            // make sure to use a separate chromium instance with its
+            // own profile so it doesn't affect any already running ones
+            "runtimeArgs": [
+                "--user-data-dir=${workspaceRoot}/.vscode/chromium-rdbg-profile"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}
