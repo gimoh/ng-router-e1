@@ -11,22 +11,30 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeroesModule } from './heroes/heroes.module';
 import { CrisisCentreModule } from './crisis-centre/crisis-centre.module';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
+import { CanDeactivateGuard } from './can-deactivate.guard';
+import { DialogService } from './dialog.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    ComposeMessageComponent
+    ComposeMessageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HeroesModule,
     CrisisCentreModule,
+    AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService, CanDeactivateGuard, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

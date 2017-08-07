@@ -12,6 +12,11 @@ export class CrisisService {
     return this.getCrisesMock();
   }
 
+  getCrisis(id: number | string): Promise<Crisis> {
+    return this.getCrises()
+      .then(crises => crises.find(crisis => crisis.id === +id));
+  }
+
   getCrisesMock(): Promise<Crisis[]> {
     return Promise.resolve(CRISES);
   }

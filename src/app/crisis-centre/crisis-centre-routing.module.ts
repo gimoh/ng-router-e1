@@ -4,9 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { CrisisCentreComponent } from './crisis-centre.component';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
+import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resolver.service';
 import { HomeComponent } from './home/home.component';
+import { CanDeactivateGuard } from '../can-deactivate.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/crisis-centre', pathMatch: 'full' },
   {
     path: 'crisis-centre',
     component: CrisisCentreComponent,
@@ -17,7 +20,11 @@ const routes: Routes = [
         children: [
           {
             path: ':id',
-            component: CrisisDetailComponent
+            component: CrisisDetailComponent,
+            canDeactivate: [CanDeactivateGuard],
+            resolve: {
+              crisis: CrisisDetailResolverService
+            }
           },
           {
             path: '',
