@@ -9,9 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { CanDeactivateGuard } from '../can-deactivate.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/crisis-centre', pathMatch: 'full' },
   {
-    path: 'crisis-centre',
+    path: '',
     component: CrisisCentreComponent,
     children: [
       {

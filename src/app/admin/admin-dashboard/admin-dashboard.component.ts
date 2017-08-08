@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { SelectivePreloadingStrategy } from '../../selective-preloading-strategy';
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -11,8 +13,14 @@ import 'rxjs/add/operator/map';
 export class AdminDashboardComponent implements OnInit {
   sessionId: Observable<string>;
   token: Observable<string>;
+  modules: string[];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private preloadStrategy: SelectivePreloadingStrategy
+  ) {
+    this.modules = preloadStrategy.preloadedModules;
+  }
 
   ngOnInit() {
     // Capture the session ID if available

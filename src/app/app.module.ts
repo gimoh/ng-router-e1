@@ -9,14 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeroesModule } from './heroes/heroes.module';
-import { CrisisCentreModule } from './crisis-centre/crisis-centre.module';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { CanDeactivateGuard } from './can-deactivate.guard';
 import { DialogService } from './dialog.service';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
 @NgModule({
   declarations: [
@@ -29,17 +28,18 @@ import { DialogService } from './dialog.service';
     BrowserModule,
     FormsModule,
     HeroesModule,
-    CrisisCentreModule,
-    AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthGuard, AuthService, CanDeactivateGuard, DialogService],
+  providers: [
+    AuthGuard, AuthService, CanDeactivateGuard, DialogService,
+    SelectivePreloadingStrategy
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    console.log('Routes:', router.config);
   }
 }
